@@ -21,8 +21,8 @@ def load_assets():
 try:
     model, scaler, feature_columns = load_assets()
 except Exception as e:
-    st.error("⚠️ Could not load the model files. Make sure telco_churn_model.h5, scaler.pkl, and features.pkl are in the exact same folder as this app.py file!")
-    st.stop()
+    st.error(f"⚠️ Error details: {e}")
+
 
 # --- 3. CREATE WEB INPUTS FOR THE MOST IMPORTANT FEATURES ---
 st.subheader("Customer Financials")
