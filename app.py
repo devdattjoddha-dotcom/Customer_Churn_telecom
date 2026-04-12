@@ -13,7 +13,8 @@ st.divider()
 # --- 2. LOAD FILES SAFELY ---
 @st.cache_resource
 def load_assets():
-    model = tf.keras.models.load_model('telco_churn_model.h5')
+    model = tf.keras.models.load_model('telco_churn_model.keras') # Notice the new extension!
+
     scaler = pickle.load(open('scaler.pkl', 'rb'))
     feature_columns = pickle.load(open('features.pkl', 'rb'))
     return model, scaler, feature_columns
