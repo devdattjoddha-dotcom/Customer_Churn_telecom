@@ -22,6 +22,7 @@ try:
     model, scaler, feature_columns = load_assets()
 except Exception as e:
     st.error(f"⚠️ Error details: {e}")
+    st.stop() # Stops the website safely!
 
 
 # --- 3. CREATE WEB INPUTS FOR THE MOST IMPORTANT FEATURES ---
