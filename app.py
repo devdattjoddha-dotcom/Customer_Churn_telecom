@@ -13,11 +13,23 @@ st.divider()
 # --- 2. LOAD FILES SAFELY ---
 @st.cache_resource
 def load_assets():
-    model = tf.keras.models.load_model('telco_churn_model.keras') # Notice the new extension!
-
+    # 1. Manually build the empty shell of your exact winning model!
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Dense(64, activation='relu', input_shape=(30,)),
+        tf.keras.layers.Dropout(0.3),
+        tf.keras.layers.Dense(32, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(1, activation='sigmoid')
+    ])
+    
+    # 2. Tell it to completely ignore the configuration, and ONLY load the mathematical weights!
+    # (If your file is named .h5 on GitHub, use .h5 here. If it is .keras, use .keras here!)
+    model.load_weights('telco_churn_model.keras') 
+    
     scaler = pickle.load(open('scaler.pkl', 'rb'))
     feature_columns = pickle.load(open('features.pkl', 'rb'))
     return model, scaler, feature_columns
+   
 
 try:
     model, scaler, feature_columns = load_assets()
